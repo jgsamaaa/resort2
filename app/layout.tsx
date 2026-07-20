@@ -9,7 +9,7 @@ const cormorant = Cormorant_Garamond({ variable: "--font-cormorant", subsets: ["
 const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dalisay-cove-resort.vercel.app"),
+  metadataBase: new URL("https://amara-ridge-resort.vercel.app"),
   title: { default: `${site.name} — Philippine Mountain Resort`, template: `%s · ${site.name}` },
   description: site.tagline,
   openGraph: { title: site.name, description: site.tagline, images: [images.hero] },
