@@ -1,92 +1,31 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Users, Maximize, BedDouble, Eye, ArrowRight } from "lucide-react";
+import { ArrowUpRight, BedDouble, Eye, Maximize, Users } from "lucide-react";
 import type { Room } from "@/lib/data";
 import Reveal from "@/components/Reveal";
 
-export default function RoomCard({
-  room,
-  index = 0,
-}: {
-  room: Room;
-  index?: number;
-}) {
-  const reversed = index % 2 === 1;
+export default function RoomCard({ room, index = 0 }: { room: Room; index?: number }) {
+  const accent = index % 3 === 0 ? "bg-[#dfff55]" : index % 3 === 1 ? "bg-gold-500" : "bg-ocean-500 text-white";
   return (
-    <Reveal direction={reversed ? "right" : "left"}>
-      <article
-        className={`group grid overflow-hidden rounded-3xl bg-white shadow-xl shadow-ocean-950/5 lg:grid-cols-2 ${
-          reversed ? "lg:[direction:rtl]" : ""
-        }`}
-      >
-        <div className="relative h-72 overflow-hidden lg:h-auto lg:min-h-[26rem] lg:[direction:ltr]">
-          <Image
-            src={room.image}
-            alt={room.name}
-            fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          <span className="absolute left-5 top-5 rounded-full bg-ocean-950/80 px-4 py-1.5 text-xs uppercase tracking-[0.2em] text-gold-300 backdrop-blur-sm">
-            {room.kind}
-          </span>
+    <Reveal direction={index % 2 ? "right" : "left"}>
+      <article className="grid overflow-hidden border-2 border-ocean-950 bg-sand-50 sticker-shadow lg:grid-cols-[1.05fr_.95fr]">
+        <div className="relative min-h-[330px] border-b-2 border-ocean-950 lg:min-h-[520px] lg:border-b-0 lg:border-r-2">
+          <Image src={room.image} alt={room.name} fill sizes="(max-width: 1024px) 100vw, 52vw" className="object-cover" />
+          <span className={`absolute left-4 top-4 border-2 border-ocean-950 px-4 py-2 text-[10px] font-black uppercase tracking-[.16em] sticker-shadow-sm ${accent}`}>0{index + 1} / {room.kind}</span>
         </div>
-
-        <div className="flex flex-col justify-center p-8 lg:p-12 lg:[direction:ltr]">
-          <h3 className="font-display text-2xl text-ocean-950 sm:text-3xl">
-            {room.name}
-          </h3>
-          <p className="mt-3 leading-relaxed text-ocean-900/70">
-            {room.description}
-          </p>
-
-          <dl className="mt-6 grid grid-cols-2 gap-3 text-sm text-ocean-900/80">
-            <div className="flex items-center gap-2">
-              <Users className="h-4 w-4 text-gold-500" />
-              Up to {room.guests} guests
-            </div>
-            <div className="flex items-center gap-2">
-              <Maximize className="h-4 w-4 text-gold-500" />
-              {room.size}
-            </div>
-            <div className="flex items-center gap-2">
-              <BedDouble className="h-4 w-4 text-gold-500" />
-              {room.bed}
-            </div>
-            <div className="flex items-center gap-2">
-              <Eye className="h-4 w-4 text-gold-500" />
-              {room.view}
-            </div>
+        <div className="flex flex-col p-6 sm:p-9 lg:p-11">
+          <p className="text-[9px] font-black uppercase tracking-[.2em] text-ocean-500">{room.view}</p>
+          <h3 className="mt-3 font-display text-6xl leading-[.82] tracking-wide text-ocean-950 sm:text-7xl">{room.name}</h3>
+          <p className="mt-6 text-sm font-medium leading-7 text-ocean-950/65">{room.description}</p>
+          <dl className="mt-7 grid grid-cols-2 border-l-2 border-t-2 border-ocean-950 text-xs font-bold">
+            {[[Users, `UP TO ${room.guests}`], [Maximize, room.size.toUpperCase()], [BedDouble, room.bed.toUpperCase()], [Eye, room.view.toUpperCase()]].map(([Icon, label]) => {
+              const DetailIcon = Icon as typeof Users;
+              return <div key={String(label)} className="flex min-h-16 items-center gap-3 border-b-2 border-r-2 border-ocean-950 p-3"><DetailIcon className="h-4 w-4 shrink-0 text-ocean-500" strokeWidth={2.5} /><span>{String(label)}</span></div>;
+            })}
           </dl>
-
-          <ul className="mt-5 flex flex-wrap gap-2">
-            {room.features.map((f) => (
-              <li
-                key={f}
-                className="rounded-full bg-sand-100 px-3.5 py-1.5 text-xs text-ocean-900/80"
-              >
-                {f}
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
-            <p>
-              <span className="font-display text-3xl text-ocean-950">
-                ₱{room.pricePHP.toLocaleString()}
-              </span>
-              <span className="text-sm text-ocean-900/60">
-                {" "}
-                / night · ≈ ${room.priceUSD}
-              </span>
-            </p>
-            <Link
-              href={`/booking?room=${room.slug}`}
-              className="group/btn inline-flex items-center gap-2 rounded-full bg-ocean-900 px-6 py-3 text-sm uppercase tracking-[0.15em] text-sand-50 transition-all hover:bg-ocean-800 hover:shadow-lg"
-            >
-              Book this {room.kind.toLowerCase()}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-            </Link>
+          <div className="mt-auto flex flex-col justify-between gap-5 pt-8 sm:flex-row sm:items-end">
+            <div><p className="text-[9px] font-black uppercase tracking-[.18em] text-ocean-950/45">Direct from</p><p className="font-display text-5xl text-ocean-500">₱{room.pricePHP.toLocaleString()}<span className="font-sans text-xs font-bold text-ocean-950"> / NIGHT</span></p></div>
+            <Link href={`/booking?room=${room.slug}`} className="flex items-center justify-center gap-2 border-2 border-ocean-950 bg-gold-500 px-5 py-4 text-[10px] font-black uppercase tracking-[.14em] transition-colors hover:bg-[#dfff55] sticker-shadow-sm">BOOK THIS ONE <ArrowUpRight className="h-4 w-4" /></Link>
           </div>
         </div>
       </article>

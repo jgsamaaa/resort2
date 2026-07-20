@@ -5,10 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MailCheck } from "lucide-react";
 
 const inputClass =
-  "w-full rounded-xl border border-sand-200 bg-white px-4 py-3 text-sm text-ocean-950 placeholder:text-ocean-900/35 focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20 transition-shadow";
+  "w-full border-2 border-ocean-950 bg-sand-50 px-4 py-3 text-sm font-semibold text-ocean-950 placeholder:text-ocean-950/30 focus:bg-ocean-50 focus:outline-none";
 
 const labelClass =
-  "mb-1.5 block text-xs font-medium uppercase tracking-[0.15em] text-ocean-900/70";
+  "mb-2 block text-[9px] font-black uppercase tracking-[0.18em] text-ocean-500";
 
 export default function InquiryForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -51,7 +51,7 @@ export default function InquiryForm() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex h-full flex-col items-center justify-center rounded-3xl bg-white p-10 text-center shadow-xl shadow-ocean-950/5"
+          className="flex h-full flex-col items-center justify-center border-2 border-ocean-950 bg-[#dfff55] p-10 text-center sticker-shadow"
         >
           <MailCheck className="h-12 w-12 text-gold-500" strokeWidth={1.5} />
           <h3 className="mt-5 font-display text-2xl text-ocean-950">
@@ -75,7 +75,7 @@ export default function InquiryForm() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           onSubmit={submitInquiry}
-          className="rounded-3xl bg-white p-8 shadow-xl shadow-ocean-950/5 lg:p-10"
+          className="border-2 border-ocean-950 bg-white p-6 sticker-shadow lg:p-10"
         >
           <h2 className="font-display text-2xl text-ocean-950">
             Send an inquiry
@@ -142,7 +142,7 @@ export default function InquiryForm() {
           <button
             type="submit"
             disabled={submitting}
-            className="mt-7 w-full rounded-full bg-ocean-900 px-8 py-4 text-sm uppercase tracking-[0.2em] text-sand-50 transition-all hover:bg-ocean-800 hover:shadow-xl disabled:cursor-wait disabled:opacity-65 sm:w-auto"
+            className="mt-7 w-full border-2 border-ocean-950 bg-gold-500 px-8 py-4 text-xs font-black uppercase tracking-[0.16em] text-ocean-950 sticker-shadow-sm transition-colors hover:bg-[#dfff55] disabled:cursor-wait disabled:opacity-65 sm:w-auto"
           >
             {submitting ? "Sending…" : "Send Message"}
           </button>

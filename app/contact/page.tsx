@@ -53,13 +53,13 @@ export default function ContactPage() {
         subtitle="Real humans, island time zone, remarkably fast replies."
       />
 
-      <section className="py-20 lg:py-28">
+      <section className="tropical-grid bg-[#dfff55] py-20 lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-5 lg:px-8">
           <div className="space-y-5 lg:col-span-2">
             {channels.map((channel, i) => (
               <Reveal key={channel.title} delay={i * 0.08}>
-                <div className="flex gap-5 rounded-3xl bg-white p-6 shadow-lg shadow-ocean-950/5">
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-ocean-50">
+                <div className="flex gap-5 border-2 border-ocean-950 bg-white p-6 sticker-shadow-sm">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center border-2 border-ocean-950 bg-gold-500">
                     <channel.icon className="h-5 w-5 text-ocean-700" />
                   </div>
                   <div>
@@ -84,7 +84,7 @@ export default function ContactPage() {
             ))}
 
             <Reveal delay={0.35}>
-              <div className="rounded-3xl bg-ocean-950 p-6 text-sand-100">
+              <div className="border-2 border-ocean-950 bg-ocean-500 p-6 text-sand-100 sticker-shadow-sm">
                 <h3 className="font-display text-lg text-gold-300">
                   Follow the cove
                 </h3>

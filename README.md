@@ -20,7 +20,7 @@ in **El Nido, Palawan, Philippines**.
 
 - 🎬 Scroll-reveal animations (Framer Motion), Ken Burns hero zoom, review marquee, hover effects
 - 📱 Fully responsive — mobile nav, fluid grids, adaptive typography
-- 🎨 Custom Tailwind v4 theme: ocean teals, sand neutrals, gold accents, Cormorant Garamond + Manrope
+- 🎨 Bold tropical-modern visual system: cobalt, coral, acid-lime, coconut cream, Bebas Neue + DM Sans
 - ⚡ Static page rendering, Vercel-ready form endpoints, and `next/image` optimization throughout
 - ♿ Semantic HTML, labeled forms, alt text, keyboard-friendly
 
@@ -39,4 +39,4 @@ Push to `main` on GitHub with the repo connected to [Vercel](https://vercel.com)
 
 ---
 
-*All content (resort, reviews, contact details) is fictional demo content. Photography via Unsplash plus a custom-generated hero image.*
+*All content (resort, reviews, contact details) is fictional demo content. Photography via Unsplash plus a custom-generated aerial hero image.*

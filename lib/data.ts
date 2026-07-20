@@ -19,7 +19,7 @@ export const site = {
 };
 
 export const heroImages = {
-  home: "/images/dalisay-hero.webp",
+  home: "/images/dalisay-aerial-v2.webp",
   rooms: img("1582719508461-905c673771fd", 2200),
   about: img("1519046904884-53103b34b206", 2200),
   location: img("1518509562904-e7ef99cdcc86", 2200),

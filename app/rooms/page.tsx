@@ -32,7 +32,7 @@ export default function RoomsPage() {
         subtitle="Twelve rooms and suites, one signature villa — each one facing a different shade of blue."
       />
 
-      <section className="py-20 lg:py-28">
+      <section className="border-b-2 border-ocean-950 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl space-y-12 px-5 lg:px-8">
           {rooms.map((room, i) => (
             <RoomCard key={room.slug} room={room} index={i} />
@@ -41,14 +41,14 @@ export default function RoomsPage() {
       </section>
 
       {/* Rates table */}
-      <section className="bg-sand-100 py-20 lg:py-28">
+      <section className="tropical-grid bg-gold-500 py-20 lg:py-28">
         <div className="mx-auto max-w-5xl px-5 lg:px-8">
           <SectionHeading
             eyebrow="Rates at a Glance"
             title="Simple, honest pricing"
             subtitle="Published rates are per night for two guests (Family Loft: four), inclusive of taxes and service charge. Peak season (Dec 20 – Jan 5, Holy Week) +20%."
           />
-          <Reveal className="mt-12 overflow-x-auto rounded-3xl bg-white shadow-xl shadow-ocean-950/5">
+          <Reveal className="mt-12 overflow-x-auto border-2 border-ocean-950 bg-white sticker-shadow">
             <table className="w-full min-w-[560px] text-left text-sm">
               <thead>
                 <tr className="border-b border-sand-200 text-xs uppercase tracking-[0.2em] text-ocean-900/60">
@@ -91,7 +91,7 @@ export default function RoomsPage() {
             </table>
           </Reveal>
 
-          <Reveal className="mt-12 rounded-3xl bg-ocean-950 p-8 text-sand-100 lg:p-10">
+          <Reveal className="mt-12 border-2 border-ocean-950 bg-ocean-500 p-8 text-sand-100 sticker-shadow lg:p-10">
             <h3 className="font-display text-2xl text-gold-300">
               Every stay includes
             </h3>
@@ -112,7 +112,7 @@ export default function RoomsPage() {
           <Reveal className="mt-12 text-center">
             <Link
               href="/booking"
-              className="inline-block rounded-full bg-gold-500 px-10 py-4 text-sm font-medium uppercase tracking-[0.2em] text-ocean-950 transition-all hover:bg-gold-400 hover:shadow-xl hover:shadow-gold-500/30"
+              className="inline-block border-2 border-ocean-950 bg-[#dfff55] px-10 py-4 text-xs font-black uppercase tracking-[0.16em] text-ocean-950 sticker-shadow-sm"
             >
               Check Availability
             </Link>

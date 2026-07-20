@@ -19,7 +19,7 @@ export default function BookingPage() {
         title="Book your stay"
         subtitle="Pick your dates, tell us who's coming, and leave the rest to us. We confirm every request within 24 hours."
       />
-      <section className="py-20 lg:py-28">
+      <section className="tropical-grid bg-[#dfff55] py-20 lg:py-28">
         <Suspense>
           <BookingForm />
         </Suspense>

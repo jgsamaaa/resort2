@@ -46,7 +46,7 @@ export default function AboutPage() {
         subtitle="What started as four bamboo bungalows and a dream is now El Nido's most-loved little cove."
       />
 
-      <section className="py-20 lg:py-28">
+      <section className="border-b-2 border-ocean-950 py-20 lg:py-28">
         <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 lg:grid-cols-2 lg:px-8">
           <Reveal direction="left">
             <p className="text-xs uppercase tracking-[0.35em] text-gold-500">
@@ -102,7 +102,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-sand-100 py-20 lg:py-28">
+      <section className="tropical-grid border-b-2 border-ocean-950 bg-[#dfff55] py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <SectionHeading
             eyebrow="What We Stand For"
@@ -111,7 +111,7 @@ export default function AboutPage() {
           <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((value, i) => (
               <Reveal key={value.title} delay={i * 0.1}>
-                <div className="h-full rounded-3xl bg-white p-8 shadow-lg shadow-ocean-950/5 transition-transform duration-300 hover:-translate-y-1.5">
+                <div className="h-full border-2 border-ocean-950 bg-white p-8 sticker-shadow transition-transform duration-300 hover:-translate-y-1.5">
                   <value.icon
                     className="h-9 w-9 text-gold-500"
                     strokeWidth={1.5}
@@ -129,7 +129,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20 text-center lg:py-28">
+      <section className="tropical-grid bg-gold-500 py-20 text-center lg:py-28">
         <Reveal>
           <p className="text-xs uppercase tracking-[0.4em] text-gold-500">
             Meet us at the shore
@@ -139,7 +139,7 @@ export default function AboutPage() {
           </h2>
           <Link
             href="/booking"
-            className="mt-9 inline-block rounded-full bg-ocean-900 px-10 py-4 text-sm uppercase tracking-[0.2em] text-sand-50 transition-all hover:bg-ocean-800 hover:shadow-xl"
+            className="mt-9 inline-block border-2 border-ocean-950 bg-ocean-500 px-10 py-4 text-xs font-black uppercase tracking-[0.16em] text-sand-50 sticker-shadow-sm"
           >
             Plan Your Stay
           </Link>

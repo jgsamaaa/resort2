@@ -14,10 +14,10 @@ import {
 import { rooms, site } from "@/lib/data";
 
 const inputClass =
-  "w-full rounded-xl border border-sand-200 bg-white px-4 py-3 text-sm text-ocean-950 placeholder:text-ocean-900/35 focus:border-ocean-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/20 transition-shadow";
+  "w-full border-2 border-ocean-950 bg-sand-50 px-4 py-3 text-sm font-semibold text-ocean-950 placeholder:text-ocean-950/30 focus:bg-ocean-50 focus:outline-none";
 
 const labelClass =
-  "mb-1.5 block text-xs font-medium uppercase tracking-[0.15em] text-ocean-900/70";
+  "mb-2 block text-[9px] font-black uppercase tracking-[0.18em] text-ocean-500";
 
 export default function BookingForm() {
   const params = useSearchParams();
@@ -105,7 +105,7 @@ export default function BookingForm() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mx-auto max-w-2xl rounded-3xl bg-white p-10 text-center shadow-xl shadow-ocean-950/5 lg:p-14"
+            className="mx-auto max-w-2xl border-2 border-ocean-950 bg-[#dfff55] p-8 text-center sticker-shadow lg:p-14"
           >
             <PartyPopper className="mx-auto h-14 w-14 text-gold-500" strokeWidth={1.5} />
             <h2 className="mt-6 font-display text-3xl text-ocean-950">
@@ -164,7 +164,7 @@ export default function BookingForm() {
           >
             <form
               onSubmit={handleSubmit}
-              className="rounded-3xl bg-white p-8 shadow-xl shadow-ocean-950/5 lg:col-span-2 lg:p-10"
+              className="border-2 border-ocean-950 bg-white p-6 sticker-shadow lg:col-span-2 lg:p-10"
             >
               <h2 className="font-display text-2xl text-ocean-950">
                 Your stay
@@ -324,7 +324,7 @@ export default function BookingForm() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="mt-8 w-full rounded-full bg-gold-500 px-8 py-4 text-sm font-medium uppercase tracking-[0.2em] text-ocean-950 transition-all hover:bg-gold-400 hover:shadow-xl hover:shadow-gold-500/30 disabled:cursor-wait disabled:opacity-65"
+                className="mt-8 w-full border-2 border-ocean-950 bg-gold-500 px-8 py-4 text-xs font-black uppercase tracking-[0.16em] text-ocean-950 sticker-shadow-sm transition-colors hover:bg-[#dfff55] disabled:cursor-wait disabled:opacity-65"
               >
                 {submitting ? "Sending request…" : "Request Booking"}
               </button>
@@ -340,7 +340,7 @@ export default function BookingForm() {
             </form>
 
             {/* Summary sidebar */}
-            <aside className="h-fit rounded-3xl bg-ocean-950 p-8 text-sand-100 lg:sticky lg:top-28">
+            <aside className="h-fit border-2 border-ocean-950 bg-ocean-500 p-8 text-sand-100 sticker-shadow lg:sticky lg:top-32">
               <h3 className="font-display text-xl text-gold-300">
                 Stay summary
               </h3>

@@ -1,19 +1,19 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Manrope } from "next/font/google";
+import { Bebas_Neue, DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MobileBookingBar from "@/components/MobileBookingBar";
 import { site } from "@/lib/data";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const bebas = Bebas_Neue({
+  variable: "--font-bebas",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: "400",
 });
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
 });
 
@@ -37,13 +37,13 @@ export const metadata: Metadata = {
     description:
       "White sand, turquoise water, and Filipino hospitality at its warmest.",
     type: "website",
-    images: ["/images/dalisay-hero.webp"],
+    images: ["/images/dalisay-aerial-v2.webp"],
   },
   twitter: {
     card: "summary_large_image",
     title: site.fullName,
     description: "A private cove, five singular stays, and the warmest welcome in Palawan.",
-    images: ["/images/dalisay-hero.webp"],
+    images: ["/images/dalisay-aerial-v2.webp"],
   },
 };
 
@@ -56,7 +56,7 @@ export default function RootLayout({
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${cormorant.variable} ${manrope.variable} h-full antialiased`}
+      className={`${bebas.variable} ${dmSans.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         <Navbar />

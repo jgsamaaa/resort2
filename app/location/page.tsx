@@ -66,10 +66,10 @@ export default function LocationPage() {
       />
 
       {/* Map + address */}
-      <section className="py-20 lg:py-28">
+      <section className="border-b-2 border-ocean-950 py-20 lg:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-5 lg:px-8">
           <Reveal direction="left" className="lg:col-span-3">
-            <div className="overflow-hidden rounded-3xl shadow-xl shadow-ocean-950/10">
+            <div className="overflow-hidden border-2 border-ocean-950 sticker-shadow">
               <iframe
                 src={site.mapEmbed}
                 title="Map of Dalisay Cove, Lio Beach, El Nido, Palawan"
@@ -111,7 +111,7 @@ export default function LocationPage() {
                 <span>{site.hours}</span>
               </li>
             </ul>
-            <div className="mt-9 rounded-2xl bg-sand-100 p-6">
+            <div className="mt-9 border-2 border-ocean-950 bg-[#dfff55] p-6 sticker-shadow-sm">
               <h3 className="font-display text-lg text-ocean-950">
                 GPS coordinates
               </h3>
@@ -128,7 +128,7 @@ export default function LocationPage() {
       </section>
 
       {/* How to reach us */}
-      <section className="bg-sand-100 py-20 lg:py-28">
+      <section className="tropical-grid bg-gold-500 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl px-5 lg:px-8">
           <SectionHeading
             eyebrow="How to Reach Us"
@@ -138,7 +138,7 @@ export default function LocationPage() {
           <div className="mt-14 grid gap-6 md:grid-cols-2">
             {routes.map((route, i) => (
               <Reveal key={route.title} delay={(i % 2) * 0.12}>
-                <div className="h-full rounded-3xl bg-white p-8 shadow-lg shadow-ocean-950/5">
+                <div className="h-full border-2 border-ocean-950 bg-white p-8 sticker-shadow">
                   <div className="flex items-center justify-between">
                     <route.icon
                       className="h-8 w-8 text-gold-500"
