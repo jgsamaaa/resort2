@@ -9,7 +9,7 @@ in **El Nido, Palawan, Philippines**.
 
 | Route | What's there |
 | --- | --- |
-| `/` | Full-screen hero, welcome story, featured rooms, experiences, guest review marquee, gallery, CTA |
+| `/` | Editorial hero, live date/guest handoff, featured stays, experiences, reviews, location story, CTA |
 | `/rooms` | All 4 rooms + signature pool villa, rates table (low/high season), inclusions |
 | `/about` | The resort's story and values |
 | `/location` | Embedded map, GPS, and 4 ways to reach the resort (air, van, ferry, overland) |
@@ -20,8 +20,8 @@ in **El Nido, Palawan, Philippines**.
 
 - 🎬 Scroll-reveal animations (Framer Motion), Ken Burns hero zoom, review marquee, hover effects
 - 📱 Fully responsive — mobile nav, fluid grids, adaptive typography
-- 🎨 Custom Tailwind v4 theme: ocean teals, sand neutrals, gold accents, Playfair Display + Jost
-- ⚡ 100% statically prerendered, `next/image` optimization throughout
+- 🎨 Custom Tailwind v4 theme: ocean teals, sand neutrals, gold accents, Cormorant Garamond + Manrope
+- ⚡ Static page rendering, Vercel-ready form endpoints, and `next/image` optimization throughout
 - ♿ Semantic HTML, labeled forms, alt text, keyboard-friendly
 
 ## Run locally
@@ -39,4 +39,4 @@ Push to `main` on GitHub with the repo connected to [Vercel](https://vercel.com)
 
 ---
 
-*All content (resort, reviews, contact details) is fictional demo content. Photography via Unsplash.*
+*All content (resort, reviews, contact details) is fictional demo content. Photography via Unsplash plus a custom-generated hero image.*

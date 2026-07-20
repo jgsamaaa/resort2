@@ -1,21 +1,28 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Jost } from "next/font/google";
+import { Cormorant_Garamond, Manrope } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import MobileBookingBar from "@/components/MobileBookingBar";
 import { site } from "@/lib/data";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const jost = Jost({
-  variable: "--font-jost",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000"
+  ),
   title: {
     default: `${site.fullName} — El Nido, Palawan`,
     template: `%s · ${site.name}`,
@@ -34,6 +41,13 @@ export const metadata: Metadata = {
     description:
       "White sand, turquoise water, and Filipino hospitality at its warmest.",
     type: "website",
+    images: ["/images/dalisay-hero.webp"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.fullName,
+    description: "A private cove, five singular stays, and the warmest welcome in Palawan.",
+    images: ["/images/dalisay-hero.webp"],
   },
 };
 
@@ -43,11 +57,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${jost.variable} h-full antialiased`}>
+    <html lang="en" className={`${cormorant.variable} ${manrope.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <MobileBookingBar />
       </body>
     </html>
   );

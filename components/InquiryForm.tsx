@@ -13,6 +13,35 @@ const labelClass =
 export default function InquiryForm() {
   const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  const submitInquiry = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitting(true);
+    setError("");
+
+    const data = Object.fromEntries(new FormData(event.currentTarget));
+
+    try {
+      const response = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const result = (await response.json()) as { ok?: boolean; error?: string };
+      if (!response.ok || !result.ok) throw new Error(result.error || "Message not sent.");
+      setSubmitted(true);
+    } catch (submissionError) {
+      setError(
+        submissionError instanceof Error
+          ? submissionError.message
+          : "Something went wrong. Please try again."
+      );
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <AnimatePresence mode="wait">
@@ -45,10 +74,7 @@ export default function InquiryForm() {
           key="form"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          onSubmit={(e) => {
-            e.preventDefault();
-            setSubmitted(true);
-          }}
+          onSubmit={submitInquiry}
           className="rounded-3xl bg-white p-8 shadow-xl shadow-ocean-950/5 lg:p-10"
         >
           <h2 className="font-display text-2xl text-ocean-950">
@@ -64,6 +90,7 @@ export default function InquiryForm() {
               </label>
               <input
                 id="iq-name"
+                name="name"
                 type="text"
                 required
                 placeholder="Juan dela Cruz"
@@ -78,6 +105,7 @@ export default function InquiryForm() {
               </label>
               <input
                 id="iq-email"
+                name="email"
                 type="email"
                 required
                 placeholder="you@email.com"
@@ -88,7 +116,7 @@ export default function InquiryForm() {
               <label htmlFor="iq-subject" className={labelClass}>
                 Subject
               </label>
-              <select id="iq-subject" className={inputClass} defaultValue="general">
+              <select id="iq-subject" name="subject" className={inputClass} defaultValue="general">
                 <option value="general">General question</option>
                 <option value="booking">Booking & availability</option>
                 <option value="event">Wedding / private event</option>
@@ -103,6 +131,7 @@ export default function InquiryForm() {
               </label>
               <textarea
                 id="iq-message"
+                name="message"
                 rows={6}
                 required
                 placeholder="Tell us what you're dreaming up…"
@@ -112,10 +141,12 @@ export default function InquiryForm() {
           </div>
           <button
             type="submit"
-            className="mt-7 w-full rounded-full bg-ocean-900 px-8 py-4 text-sm uppercase tracking-[0.2em] text-sand-50 transition-all hover:bg-ocean-800 hover:shadow-xl sm:w-auto"
+            disabled={submitting}
+            className="mt-7 w-full rounded-full bg-ocean-900 px-8 py-4 text-sm uppercase tracking-[0.2em] text-sand-50 transition-all hover:bg-ocean-800 hover:shadow-xl disabled:cursor-wait disabled:opacity-65 sm:w-auto"
           >
-            Send Message
+            {submitting ? "Sending…" : "Send Message"}
           </button>
+          {error && <p role="alert" className="mt-4 text-sm text-red-700">{error}</p>}
         </motion.form>
       )}
     </AnimatePresence>

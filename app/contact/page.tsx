@@ -17,24 +17,28 @@ const channels = [
     icon: Phone,
     title: "Call or text",
     lines: [site.phone, site.landline],
+    href: `tel:${site.phone.replace(/\s/g, "")}`,
     note: "Reservations 8 AM – 8 PM (GMT+8)",
   },
   {
     icon: MessageCircle,
     title: "WhatsApp / Viber",
     lines: [site.whatsapp],
+    href: "https://wa.me/639175550148",
     note: "Fastest reply — usually within the hour",
   },
   {
     icon: Mail,
     title: "Email",
     lines: [site.email],
+    href: `mailto:${site.email}`,
     note: "Answered within 24 hours, every day",
   },
   {
     icon: MapPin,
     title: "Visit",
     lines: [site.address],
+    href: "/location",
     note: "Walk-ins welcome for lunch & tours",
   },
 ];
@@ -63,9 +67,13 @@ export default function ContactPage() {
                       {channel.title}
                     </h3>
                     {channel.lines.map((line) => (
-                      <p key={line} className="mt-1 text-sm text-ocean-900/80">
+                      <a
+                        key={line}
+                        href={channel.href}
+                        className="mt-1 block text-sm text-ocean-900/80 transition-colors hover:text-gold-600"
+                      >
                         {line}
-                      </p>
+                      </a>
                     ))}
                     <p className="mt-1.5 text-xs text-ocean-900/50">
                       {channel.note}

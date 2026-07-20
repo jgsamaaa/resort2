@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-sand-50: #faf7f0;
-  --color-sand-100: #f4eee0;
-  --color-sand-200: #e9ddc6;
-  --color-sand-300: #dbc9a4;
-  --color-sand-400: #c9af7c;
+  --color-sand-50: #fbf9f3;
+  --color-sand-100: #f3ede0;
+  --color-sand-200: #e6dac4;
+  --color-sand-300: #d5c09c;
+  --color-sand-400: #bfa06f;
 
   --color-ocean-50: #eef7f8;
   --color-ocean-100: #d8edef;
@@ -16,20 +16,21 @@
   --color-ocean-600: #1f7280;
   --color-ocean-700: #175d69;
   --color-ocean-800: #114953;
-  --color-ocean-900: #0b3a43;
-  --color-ocean-950: #06272e;
+  --color-ocean-900: #093942;
+  --color-ocean-950: #04272e;
 
   --color-gold-300: #e3c98f;
   --color-gold-400: #d4b06a;
-  --color-gold-500: #c6a15b;
+  --color-gold-500: #d4ad66;
   --color-gold-600: #a98342;
 
-  --font-display: var(--font-playfair), "Playfair Display", serif;
-  --font-sans: var(--font-jost), "Jost", sans-serif;
+  --font-display: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-manrope), Arial, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -38,6 +39,43 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-gold-500);
+  outline-offset: 4px;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.eyebrow-line::before {
+  content: "";
+  display: inline-block;
+  width: 2.75rem;
+  height: 1px;
+  margin-right: 0.9rem;
+  vertical-align: middle;
+  background: currentColor;
+  opacity: 0.65;
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
 }
 
 ::selection {
@@ -86,6 +124,17 @@ body {
 }
 .animate-marquee:hover {
   animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 /* Thin elegant scrollbar */

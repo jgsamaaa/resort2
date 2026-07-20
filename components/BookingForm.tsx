@@ -26,11 +26,14 @@ export default function BookingForm() {
     ? preselected
     : "";
 
+  const requestedAdults = params.get("adults") ?? "2";
   const [form, setForm] = useState({
     room: validSlug,
-    checkIn: "",
-    checkOut: "",
-    adults: "2",
+    checkIn: params.get("checkIn") ?? "",
+    checkOut: params.get("checkOut") ?? "",
+    adults: ["1", "2", "3", "4", "5", "6"].includes(requestedAdults)
+      ? requestedAdults
+      : "2",
     children: "0",
     name: "",
     email: "",
@@ -39,6 +42,8 @@ export default function BookingForm() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [reference, setReference] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -63,13 +68,32 @@ export default function BookingForm() {
     ) =>
       setForm((f) => ({ ...f, [key]: e.target.value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setReference(
-      `DC-${Date.now().toString(36).toUpperCase().slice(-6)}`
-    );
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setSubmitting(true);
+    setError("");
+    try {
+      const response = await fetch("/api/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const result = (await response.json()) as { reference?: string; error?: string };
+      if (!response.ok || !result.reference) {
+        throw new Error(result.error || "We could not send your request.");
+      }
+      setReference(result.reference);
+      setSubmitted(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (submissionError) {
+      setError(
+        submissionError instanceof Error
+          ? submissionError.message
+          : "Something went wrong. Please try again."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -299,10 +323,16 @@ export default function BookingForm() {
 
               <button
                 type="submit"
-                className="mt-8 w-full rounded-full bg-gold-500 px-8 py-4 text-sm font-medium uppercase tracking-[0.2em] text-ocean-950 transition-all hover:bg-gold-400 hover:shadow-xl hover:shadow-gold-500/30"
+                disabled={submitting}
+                className="mt-8 w-full rounded-full bg-gold-500 px-8 py-4 text-sm font-medium uppercase tracking-[0.2em] text-ocean-950 transition-all hover:bg-gold-400 hover:shadow-xl hover:shadow-gold-500/30 disabled:cursor-wait disabled:opacity-65"
               >
-                Request Booking
+                {submitting ? "Sending request…" : "Request Booking"}
               </button>
+              {error && (
+                <p role="alert" className="mt-4 text-center text-sm text-red-700">
+                  {error}
+                </p>
+              )}
               <p className="mt-4 text-center text-xs text-ocean-900/50">
                 No payment now — we confirm availability first, always within
                 24 hours.
