@@ -18,11 +18,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000"
-  ),
+  metadataBase: new URL("https://dalisay-cove-resort.vercel.app"),
   title: {
     default: `${site.fullName} — El Nido, Palawan`,
     template: `%s · ${site.name}`,
