@@ -1,145 +1,53 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDownRight, ArrowRight, ArrowUpRight, MapPin, Quote, Star, Waves } from "lucide-react";
-import { amenities, galleryImages, heroImages, reviews, rooms } from "@/lib/data";
-import AvailabilityBar from "@/components/AvailabilityBar";
+import { ArrowDown, ArrowUpRight, Cloud, Coffee, Flame, Leaf, Mountain, Star } from "lucide-react";
+import BookingBar from "@/components/BookingBar";
+import CTASection from "@/components/CTASection";
+import ExperienceCard from "@/components/ExperienceCard";
+import JournalCard from "@/components/JournalCard";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
+import StayCard from "@/components/StayCard";
+import { experiences, galleryImages, images, journalPosts, offers, stays } from "@/lib/amara-data";
 
-const featured = [rooms[2], rooms[4], rooms[0]];
+const testimonials = [
+  { quote: "There is a particular hour when the valley disappears into cloud and the fire is lit. We have travelled widely, but we have never felt stillness arranged so beautifully.", name: "Elena & Marc", place: "Singapore" },
+  { quote: "Our children remember the pine trail and cacao by the hearth. We remember how the team anticipated every detail without ever making the stay feel managed.", name: "The Villanueva family", place: "Manila" },
+  { quote: "Amara understands that privacy is not isolation. The hosts appeared exactly when needed, then left us alone with the view. An exceptionally thoughtful retreat.", name: "Sophie R.", place: "London" },
+];
 
-export default function HomePage() {
-  return (
-    <>
-      <section className="grid min-h-[780px] border-b-2 border-ocean-950 pt-[100px] lg:h-svh lg:grid-cols-[1.04fr_.96fr]">
-        <div className="tropical-grid relative flex flex-col justify-between overflow-hidden bg-sand-50 px-5 pb-10 pt-14 sm:px-10 lg:px-12 lg:pb-12 lg:pt-16">
-          <div>
-            <Reveal direction="fade">
-              <div className="flex flex-wrap gap-2">
-                <span className="border-2 border-ocean-950 bg-[#dfff55] px-3 py-2 text-[9px] font-black uppercase tracking-[.15em] sticker-shadow-sm">El Nido, Palawan</span>
-                <span className="border-2 border-ocean-950 bg-white px-3 py-2 text-[9px] font-black uppercase tracking-[.15em]">13 stays only</span>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h1 className="mt-9 max-w-3xl font-display text-[clamp(4rem,7.4vw,7.5rem)] leading-[.72] tracking-[.015em] text-ocean-500">
-                NO SHOES.<br />NO SCHEDULE.<br /><span className="text-gold-500">NO PROBLEM.</span>
-              </h1>
-            </Reveal>
-          </div>
+export default function Home() {
+  return <>
+    <section className="paper-grain relative flex min-h-screen items-end overflow-hidden bg-pine-black px-5 pb-24 pt-36 text-white lg:px-10 lg:pb-20">
+      <Image src={images.hero} alt="Amara Ridge villas above a mist-filled Philippine highland valley" fill priority className="hero-breathe object-cover" sizes="100vw" />
+      <div className="absolute inset-0 bg-gradient-to-r from-pine-black/75 via-pine-black/20 to-transparent" /><div className="absolute inset-0 bg-gradient-to-t from-pine-black/65 via-transparent to-pine-black/30" />
+      <div className="relative mx-auto w-full max-w-[94rem]"><Reveal><p className="eyebrow text-ember">Cordillera · Philippines</p><h1 className="mt-6 max-w-6xl text-balance font-display text-[clamp(4.2rem,10vw,10rem)] leading-[.78] tracking-[-.02em]">Above the clouds, life moves differently.</h1><p className="mt-7 max-w-xl text-sm leading-7 text-white/72 sm:text-base">A private mountain sanctuary of six villas, considered Filipino hospitality and the beautiful luxury of having nowhere else to be.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link href="/booking" className="inline-flex items-center justify-center gap-3 bg-ember px-7 py-4 text-[10px] font-bold uppercase tracking-[.18em] text-pine-black hover:bg-white">Book your escape <ArrowUpRight className="h-4 w-4" /></Link><Link href="/stays" className="inline-flex items-center justify-center gap-3 border border-white/40 px-7 py-4 text-[10px] font-bold uppercase tracking-[.18em] hover:bg-white hover:text-pine-black">Explore villas</Link></div></Reveal></div>
+      <a href="#story" aria-label="Discover more" className="gentle-drift absolute bottom-7 right-7 hidden items-center gap-2 text-[9px] uppercase tracking-[.2em] text-white/55 lg:flex">Discover <ArrowDown className="h-4 w-4" /></a>
+    </section>
 
-          <Reveal delay={0.22}>
-            <div className="mt-12 flex flex-col justify-between gap-7 border-t-2 border-ocean-950 pt-6 sm:flex-row sm:items-end">
-              <p className="max-w-sm text-sm font-semibold leading-6 text-ocean-950/70">A small Filipino beach resort for big swims, slow breakfasts, louder sunsets, and absolutely nowhere else to be.</p>
-              <div className="flex gap-3">
-                <Link href="/booking" className="flex items-center gap-2 border-2 border-ocean-950 bg-gold-500 px-5 py-4 text-[10px] font-black uppercase tracking-[.14em] sticker-shadow-sm transition-transform hover:-translate-y-1">BOOK IT <ArrowUpRight className="h-4 w-4" /></Link>
-                <Link href="/rooms" aria-label="Explore stays" className="flex h-[52px] w-[52px] items-center justify-center border-2 border-ocean-950 bg-[#dfff55] sticker-shadow-sm"><ArrowRight /></Link>
-              </div>
-            </div>
-          </Reveal>
+    <div className="bg-deep-forest px-4 pb-3 sm:px-6 lg:px-10"><BookingBar floating /></div>
+    <div className="bg-deep-forest px-5 pb-12 pt-8 text-white lg:px-10"><div className="mx-auto grid max-w-[90rem] grid-cols-2 gap-y-7 border-t border-white/10 pt-8 text-center sm:grid-cols-4"><div><p className="font-display text-3xl text-ember">6</p><p className="mt-1 text-[8px] uppercase tracking-[.18em] text-white/45">Private villas</p></div><div><p className="font-display text-3xl text-ember">1:1</p><p className="mt-1 text-[8px] uppercase tracking-[.18em] text-white/45">Personal concierge</p></div><div><p className="font-display text-3xl text-ember">100%</p><p className="mt-1 text-[8px] uppercase tracking-[.18em] text-white/45">Philippine highland story</p></div><div><p className="font-display text-3xl text-ember">Always</p><p className="mt-1 text-[8px] uppercase tracking-[.18em] text-white/45">Breakfast included</p></div></div></div>
 
-          <div className="animate-bob absolute right-8 top-36 hidden h-24 w-24 items-center justify-center rounded-full border-2 border-ocean-950 bg-ocean-950 text-center text-[9px] font-black uppercase leading-4 tracking-[.14em] text-white sm:flex lg:right-10">Best<br />rate<br />direct</div>
-        </div>
+    <section id="story" className="bg-cloud px-5 py-24 lg:px-10 lg:py-36"><div className="mx-auto grid max-w-[90rem] items-center gap-14 lg:grid-cols-[.9fr_1.1fr]">
+      <Reveal><div className="relative"><div className="relative aspect-[4/5] overflow-hidden"><Image src={images.villa} alt="Private Amara Ridge villa among Benguet pines" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 48vw" /></div><div className="absolute -bottom-8 -right-2 max-w-[15rem] bg-ember p-6 sm:right-[-2rem]"><Mountain className="h-7 w-7 stroke-[1.3]"/><p className="mt-4 font-display text-2xl leading-tight">Six private stays. One extraordinary ridge.</p></div></div></Reveal>
+      <div className="lg:pl-12"><SectionHeading eyebrow="The Amara story" title="A gentler expression of the Philippine highlands." subtitle="Amara Ridge was imagined as a conversation between landscape and hospitality—deeply private, quietly modern and unmistakably Filipino." align="left" /><Reveal delay={.15}><div className="mt-9 grid gap-6 border-t border-pine-black/15 pt-8 sm:grid-cols-2"><p className="text-sm leading-7 text-pine-black/65">Built along the contours of a Cordillera ridge, every villa turns toward cloud, pine and changing light. Local stone holds the warmth of each hearth; broad eaves invite the rain to be watched, not avoided.</p><p className="text-sm leading-7 text-pine-black/65">Our hosts remember how you take your coffee, arrange days around your energy, and understand that sometimes the finest service is simply protecting your quiet.</p></div><Link href="/about" className="mt-8 inline-flex items-center gap-2 border-b border-pine-black pb-1 text-[10px] font-bold uppercase tracking-[.18em]">Our philosophy <ArrowUpRight className="h-4 w-4" /></Link></Reveal></div>
+    </div></section>
 
-        <div className="relative min-h-[620px] overflow-hidden border-t-2 border-ocean-950 lg:min-h-0 lg:border-l-2 lg:border-t-0">
-          <Image src={heroImages.home} alt="Aerial view of Dalisay Cove in Palawan" fill priority sizes="(max-width:1024px) 100vw, 50vw" className="object-cover" />
-          <div className="absolute bottom-0 left-0 border-r-2 border-t-2 border-ocean-950 bg-ocean-500 p-5 text-white sm:p-7">
-            <p className="font-display text-5xl leading-none">4.9 / 5</p>
-            <p className="mt-2 text-[9px] font-black uppercase tracking-[.16em]">300+ happy castaways</p>
-          </div>
-          <div className="absolute right-4 top-4 border-2 border-ocean-950 bg-sand-50 p-3 sticker-shadow-sm">
-            <Waves className="h-7 w-7 text-ocean-500" strokeWidth={2.5} />
-          </div>
-        </div>
-      </section>
+    <section className="bg-linen/55 px-5 py-24 lg:px-10 lg:py-32"><div className="mx-auto max-w-[94rem]"><SectionHeading eyebrow="Private stays" title="Your own place in the mountains." subtitle="Each villa has its own relationship with the ridge—forest, fire, water or the wide-open horizon." /><div className="mt-14 grid gap-6 md:grid-cols-2 lg:gap-8">{stays.slice(0,4).map((stay, index) => <Reveal key={stay.slug} delay={(index%2)*.1}><StayCard stay={stay}/></Reveal>)}</div><div className="mt-10 text-center"><Link href="/stays" className="inline-flex items-center gap-3 border border-pine-black px-7 py-4 text-[10px] font-bold uppercase tracking-[.18em] hover:bg-pine-black hover:text-white">View all stays <ArrowUpRight className="h-4 w-4" /></Link></div></div></section>
 
-      <AvailabilityBar />
+    <section className="bg-deep-forest px-5 py-24 text-white lg:px-10 lg:py-32"><div className="mx-auto max-w-[94rem]"><SectionHeading eyebrow="The rhythm of Amara" title="Days shaped by curiosity, not schedules." subtitle="Move through pine forest, meet the people and ingredients of the highlands, or let an afternoon pass beside warm water." light /><div className="mt-14 grid gap-7 md:grid-cols-3">{experiences.slice(0,3).map((item, index)=><Reveal key={item.slug} delay={index*.08}><div className="[&_article>div:last-child]:border-white/15 [&_article>div:last-child_p]:text-white/60"><ExperienceCard item={item}/></div></Reveal>)}</div><div className="mt-10 text-center"><Link href="/experiences" className="inline-flex items-center gap-3 border border-white/30 px-7 py-4 text-[10px] font-bold uppercase tracking-[.18em] hover:bg-white hover:text-pine-black">Discover every experience <ArrowUpRight className="h-4 w-4" /></Link></div></div></section>
 
-      <div className="overflow-hidden border-b-2 border-ocean-950 bg-gold-500 py-4">
-        <div className="animate-ticker flex w-max whitespace-nowrap font-display text-3xl tracking-wide text-ocean-950 sm:text-4xl">
-          {[...Array(2)].map((_, group) => <span key={group}>{["SWIM BEFORE BREAKFAST", "NAP AFTER LUNCH", "CHASE THE SUNSET", "REPEAT TOMORROW"].map((item) => <span key={`${group}-${item}`} className="mx-7">✦ {item}</span>)}</span>)}
-        </div>
-      </div>
+    <section className="grid bg-cloud lg:grid-cols-2"><div className="relative min-h-[70vh]"><Image src={images.wellness} alt="Open-air wellness pavilion in the Philippine highlands" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" /></div><div className="flex items-center px-5 py-20 lg:px-[10%]"><Reveal><p className="eyebrow text-clay">Wellness, naturally</p><h2 className="mt-6 font-display text-5xl leading-[.94] sm:text-7xl">The mountain does half the work.</h2><p className="mt-6 text-sm leading-7 text-pine-black/62">Cool air. Long sleep. A warm plunge in moving mist. Our wellness practice draws from Filipino hilot, local botanicals and the simple intelligence of being outdoors.</p><div className="mt-8 grid grid-cols-2 gap-5 border-y border-pine-black/15 py-7 text-[10px] font-bold uppercase tracking-[.14em]"><span className="flex items-center gap-2"><Leaf className="h-4 w-4 text-moss"/>Botanical rituals</span><span className="flex items-center gap-2"><Cloud className="h-4 w-4 text-moss"/>Forest bathing</span><span className="flex items-center gap-2"><Flame className="h-4 w-4 text-moss"/>Warm plunge</span><span className="flex items-center gap-2"><Coffee className="h-4 w-4 text-moss"/>Sleep infusions</span></div><Link href="/wellness" className="mt-8 inline-flex items-center gap-2 border-b border-pine-black pb-1 text-[10px] font-bold uppercase tracking-[.18em]">Restore at Amara <ArrowUpRight className="h-4 w-4"/></Link></Reveal></div></section>
 
-      <section className="overflow-hidden border-b-2 border-ocean-950 py-20 lg:py-28">
-        <div className="mx-auto grid max-w-[90rem] gap-14 px-5 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:px-10">
-          <Reveal direction="left">
-            <div className="relative pr-6 pt-6 sm:pr-16">
-              <div className="relative aspect-[4/5] border-2 border-ocean-950 bg-ocean-500 sticker-shadow">
-                <Image src={galleryImages[0].src} alt={galleryImages[0].alt} fill sizes="(max-width:1024px) 100vw,45vw" className="object-cover" />
-              </div>
-              <div className="absolute -bottom-7 right-0 w-[45%] rotate-3 border-2 border-ocean-950 bg-white p-2 sticker-shadow-sm">
-                <div className="relative aspect-square"><Image src={galleryImages[3].src} alt={galleryImages[3].alt} fill sizes="240px" className="object-cover" /></div>
-                <p className="py-2 text-center text-[8px] font-black uppercase tracking-[.14em]">Breakfast floats here</p>
-              </div>
-            </div>
-          </Reveal>
-          <Reveal direction="right">
-            <p className="text-[10px] font-black uppercase tracking-[.2em] text-ocean-500">01 / THE BIG IDEA</p>
-            <h2 className="mt-5 text-balance font-display text-7xl leading-[.78] tracking-wide text-ocean-950 sm:text-8xl lg:text-[8rem]">SMALL RESORT.<br /><span className="text-ocean-500">HUGE FEELING.</span></h2>
-            <p className="mt-8 max-w-2xl text-base font-medium leading-8 text-ocean-950/65">We built Dalisay for people who want the Philippines without the mega-resort. Thirteen keys, one private cove, a team who knows your name, and nothing taller than a coconut tree.</p>
-            <div className="mt-8 grid grid-cols-3 border-l-2 border-t-2 border-ocean-950">
-              {[["13", "ROOMS + VILLA"], ["50M", "TO THE WATER"], ["2015", "BORN IN PALAWAN"]].map(([value,label]) => <div key={label} className="border-b-2 border-r-2 border-ocean-950 p-4"><p className="font-display text-4xl text-gold-500 sm:text-5xl">{value}</p><p className="mt-1 text-[7px] font-black uppercase tracking-[.12em]">{label}</p></div>)}
-            </div>
-            <Link href="/about" className="mt-8 inline-flex items-center gap-3 border-b-2 border-ocean-950 pb-2 text-[10px] font-black uppercase tracking-[.15em]">MEET THE FAMILY <ArrowRight className="h-4 w-4" /></Link>
-          </Reveal>
-        </div>
-      </section>
+    <section className="bg-soft-white px-5 py-24 lg:px-10 lg:py-32"><div className="mx-auto max-w-[94rem]"><SectionHeading eyebrow="The table" title="Philippine ingredients, seen from a higher place." subtitle="At Sulo, the highlands arrive through fire, fermentation, native herbs, small farms and recipes held in living memory."/><div className="mt-14 grid gap-4 lg:grid-cols-[1.25fr_.75fr]"><div className="relative min-h-[34rem] overflow-hidden"><Image src={images.dining} alt="Filipino highland tasting menu at Sulo" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 65vw"/></div><div className="flex flex-col justify-between bg-ember p-8 sm:p-10"><div><p className="eyebrow text-pine-black">Sulo restaurant</p><h3 className="mt-6 font-display text-5xl leading-none">Rooted here. Served with a wider view.</h3><p className="mt-6 text-sm leading-7 text-pine-black/65">Breakfast follows the weather. Dinner follows the harvest. The tasting menu is Filipino in instinct and contemporary in its sense of restraint.</p></div><Link href="/dining" className="mt-10 inline-flex items-center gap-2 self-start border-b border-pine-black pb-1 text-[10px] font-bold uppercase tracking-[.18em]">Meet Sulo <ArrowUpRight className="h-4 w-4"/></Link></div></div></div></section>
 
-      <section className="tropical-grid border-b-2 border-ocean-950 bg-[#dfff55] py-20 lg:py-28">
-        <div className="mx-auto max-w-[90rem] px-5 lg:px-10">
-          <SectionHeading eyebrow="PICK YOUR PILLOW" title="STAY SOMEWHERE FUN" subtitle="Garden hideaway, front-row suite, or the full private-villa fantasy. Breakfast and water toys come with every key." />
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {featured.map((room, index) => (
-              <Reveal key={room.slug} delay={index * .1}>
-                <Link href={`/booking?room=${room.slug}`} className="group block border-2 border-ocean-950 bg-sand-50 sticker-shadow transition-transform hover:-translate-y-2">
-                  <div className="relative aspect-[4/3] border-b-2 border-ocean-950"><Image src={room.image} alt={room.name} fill sizes="(max-width:1024px)100vw,33vw" className="object-cover" /><span className="absolute left-3 top-3 border-2 border-ocean-950 bg-gold-500 px-3 py-2 text-[8px] font-black uppercase sticker-shadow-sm">0{index + 1} / {room.kind}</span></div>
-                  <div className="p-5">
-                    <h3 className="font-display text-5xl leading-none text-ocean-500">{room.name}</h3>
-                    <p className="mt-3 min-h-12 text-xs font-medium leading-5 text-ocean-950/65">{room.shortDescription}</p>
-                    <div className="mt-5 flex items-center justify-between border-t-2 border-ocean-950 pt-4"><p className="font-display text-3xl">₱{room.pricePHP.toLocaleString()}<span className="font-sans text-[8px] font-bold"> / NIGHT</span></p><span className="flex h-10 w-10 items-center justify-center border-2 border-ocean-950 bg-gold-500 transition-transform group-hover:rotate-45"><ArrowUpRight className="h-4 w-4" /></span></div>
-                  </div>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-          <div className="mt-12 text-center"><Link href="/rooms" className="inline-flex items-center gap-3 border-2 border-ocean-950 bg-ocean-500 px-7 py-4 text-[10px] font-black uppercase tracking-[.15em] text-white sticker-shadow-sm">SEE ALL ROOMS + RATES <ArrowUpRight className="h-4 w-4" /></Link></div>
-        </div>
-      </section>
+    <section className="bg-cloud px-5 py-24 lg:px-10 lg:py-32"><div className="mx-auto max-w-[94rem]"><SectionHeading eyebrow="Field of view" title="A place that changes by the hour."/><div className="mt-14 grid auto-rows-[220px] gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[260px]">{galleryImages.slice(0,6).map((item,index)=><Link href="/gallery" key={`${item.alt}-${index}`} className={`group relative overflow-hidden ${index===0||index===5?"sm:col-span-2":""}`}><Image src={item.src} alt={item.alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 768px) 100vw, 25vw"/><span className="absolute inset-0 bg-pine-black/0 transition group-hover:bg-pine-black/20"/></Link>)}</div><div className="mt-8 text-center"><Link href="/gallery" className="inline-flex items-center gap-2 border-b border-pine-black pb-1 text-[10px] font-bold uppercase tracking-[.18em]">Open the gallery <ArrowUpRight className="h-4 w-4"/></Link></div></div></section>
 
-      <section className="border-b-2 border-ocean-950 bg-ocean-500 py-20 text-white lg:py-28">
-        <div className="mx-auto max-w-[90rem] px-5 lg:px-10">
-          <div className="grid gap-12 lg:grid-cols-[.65fr_1.35fr]">
-            <Reveal direction="left">
-              <p className="text-[10px] font-black uppercase tracking-[.2em] text-[#dfff55]">02 / DO EVERYTHING. OR NOTHING.</p>
-              <h2 className="mt-5 font-display text-7xl leading-[.78] sm:text-8xl">YOUR DAY.<br /><span className="text-gold-400">YOUR RULES.</span></h2>
-              <p className="mt-7 max-w-md text-sm font-medium leading-7 text-white/65">Paddle out. Float around. Eat something smoky. Book a massage. Change your mind. Island time is extremely forgiving.</p>
-            </Reveal>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {amenities.slice(0,4).map((amenity,index) => <Reveal key={amenity.title} delay={index*.08}><div className="group relative aspect-[5/3] overflow-hidden border-2 border-ocean-950 bg-white sticker-shadow-sm"><Image src={amenity.image} alt={amenity.title} fill sizes="(max-width:640px)100vw,35vw" className="object-cover transition-transform duration-500 group-hover:scale-105" /><div className="absolute inset-x-0 bottom-0 border-t-2 border-ocean-950 bg-sand-50 p-4 text-ocean-950"><p className="font-display text-3xl">{amenity.title}</p><p className="text-[10px] font-medium">{amenity.description}</p></div></div></Reveal>)}
-            </div>
-          </div>
-        </div>
-      </section>
+    <section className="bg-linen px-5 py-24 lg:px-10 lg:py-32"><div className="mx-auto max-w-[94rem]"><SectionHeading eyebrow="Guest reflections" title="Carried home from the ridge."/><div className="mt-14 grid gap-5 lg:grid-cols-3">{testimonials.map((item,index)=><Reveal key={item.name} delay={index*.08}><blockquote className="h-full bg-soft-white p-8 sm:p-10"><div className="flex gap-1 text-ember">{Array.from({length:5}).map((_,i)=><Star key={i} className="h-3.5 w-3.5 fill-current"/>)}</div><p className="mt-8 font-display text-2xl leading-snug">“{item.quote}”</p><footer className="mt-9 border-t border-pine-black/10 pt-5 text-[9px] font-bold uppercase tracking-[.17em] text-pine-black/55">{item.name} · {item.place}</footer></blockquote></Reveal>)}</div></div></section>
 
-      <section className="border-b-2 border-ocean-950 py-20 lg:py-28">
-        <div className="mx-auto max-w-[90rem] px-5 lg:px-10">
-          <SectionHeading eyebrow="HEARD AT THE BEACH BAR" title="PEOPLE SAY NICE THINGS" />
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {reviews.slice(0,3).map((review,index)=><Reveal key={review.name} delay={index*.1}><figure className={`h-full border-2 border-ocean-950 p-6 sticker-shadow ${index===1?"bg-gold-500":index===2?"bg-[#dfff55]":"bg-sand-50"}`}><div className="flex justify-between"><Quote className="h-8 w-8 text-ocean-500" /><div className="flex">{[...Array(review.rating)].map((_,i)=><Star key={i} className="h-3 w-3 fill-ocean-950" />)}</div></div><blockquote className="mt-7 font-display text-3xl leading-[1.02]">“{review.text}”</blockquote><figcaption className="mt-8 border-t-2 border-ocean-950 pt-4 text-[9px] font-black uppercase tracking-[.13em]">{review.name} · {review.origin}</figcaption></figure></Reveal>)}
-          </div>
-        </div>
-      </section>
+    <section className="bg-deep-forest px-5 py-24 text-white lg:px-10 lg:py-32"><div className="mx-auto max-w-[94rem]"><SectionHeading eyebrow="Curated stays" title="Arrive with less to arrange." subtitle="Four considered ways to experience the ridge, each flexible enough to feel entirely your own." light/><div className="mt-14 grid gap-px bg-white/15 md:grid-cols-2 lg:grid-cols-4">{offers.map((offer,index)=><article key={offer.slug} className="flex flex-col bg-deep-forest p-7"><p className="text-[9px] font-bold tracking-[.18em] text-ember">0{index+1} · {offer.length}</p><h3 className="mt-6 font-display text-3xl">{offer.name}</h3><p className="mt-4 flex-1 text-sm leading-7 text-white/55">{offer.description}</p><Link href={`/booking?offer=${offer.slug}`} className="mt-7 inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[.16em] text-ember">Request this stay <ArrowUpRight className="h-4 w-4"/></Link></article>)}</div><div className="mt-9 text-center"><Link href="/offers" className="inline-flex items-center gap-2 border-b border-white pb-1 text-[10px] font-bold uppercase tracking-[.18em]">View all offers <ArrowUpRight className="h-4 w-4"/></Link></div></div></section>
 
-      <section className="grid border-b-2 border-ocean-950 lg:grid-cols-2">
-        <div className="relative min-h-[520px] border-b-2 border-ocean-950 lg:border-b-0 lg:border-r-2"><Image src={galleryImages[7].src} alt="Limestone islands of El Nido" fill sizes="(max-width:1024px)100vw,50vw" className="object-cover" /><div className="absolute left-5 top-5 border-2 border-ocean-950 bg-[#dfff55] p-4 sticker-shadow-sm"><MapPin className="h-7 w-7" /></div></div>
-        <div className="tropical-grid flex flex-col justify-center bg-gold-500 p-7 sm:p-12 lg:p-16">
-          <Reveal direction="right"><p className="text-[10px] font-black uppercase tracking-[.2em]">03 / GETTING HERE</p><h2 className="mt-5 font-display text-7xl leading-[.8] sm:text-8xl">PARADISE.<br />15 MINUTES<br />FROM ELN.</h2><p className="mt-7 max-w-lg text-sm font-semibold leading-7">Fly direct from Manila to Lio Airport. We meet you with a cold buko. Fifteen minutes later: toes in sand, phone on silent.</p><Link href="/location" className="mt-8 inline-flex w-fit items-center gap-3 border-2 border-ocean-950 bg-sand-50 px-6 py-4 text-[10px] font-black uppercase tracking-[.15em] sticker-shadow-sm">PLAN THE TRIP <ArrowUpRight className="h-4 w-4" /></Link></Reveal>
-        </div>
-      </section>
-
-      <section className="tropical-grid bg-[#dfff55] px-5 py-20 text-center lg:py-28">
-        <Reveal><p className="text-[10px] font-black uppercase tracking-[.2em] text-ocean-500">THE WATER IS RIDICULOUSLY BLUE</p><h2 className="mx-auto mt-5 max-w-6xl font-display text-[clamp(5rem,12vw,11rem)] leading-[.72] tracking-wide">COME SEE FOR YOURSELF.</h2><p className="mx-auto mt-8 max-w-xl text-sm font-semibold leading-7">Book direct for the best rate, breakfast every morning, and free airport pickup when you stay three nights or more.</p><div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row"><Link href="/booking" className="flex items-center justify-center gap-3 border-2 border-ocean-950 bg-ocean-500 px-8 py-4 text-[10px] font-black uppercase tracking-[.15em] text-white sticker-shadow-sm">CHECK YOUR DATES <ArrowUpRight className="h-4 w-4" /></Link><Link href="/contact" className="flex items-center justify-center gap-3 border-2 border-ocean-950 bg-sand-50 px-8 py-4 text-[10px] font-black uppercase tracking-[.15em] sticker-shadow-sm">ASK US ANYTHING <ArrowDownRight className="h-4 w-4" /></Link></div></Reveal>
-      </section>
-    </>
-  );
+    <section className="bg-soft-white px-5 py-24 lg:px-10 lg:py-32"><div className="mx-auto max-w-[94rem]"><SectionHeading eyebrow="From the journal" title="Notes from a slower altitude."/><div className="mt-14 grid gap-10 md:grid-cols-2">{journalPosts.slice(0,2).map(post=><JournalCard key={post.slug} post={post}/>)}</div></div></section>
+    <CTASection />
+  </>;
 }

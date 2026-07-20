@@ -1,36 +1,14 @@
 import Image from "next/image";
-import { ArrowDownRight } from "lucide-react";
-import Reveal from "@/components/Reveal";
 
-export default function PageHero({
-  image,
-  eyebrow,
-  title,
-  subtitle,
-}: {
-  image: string;
-  eyebrow: string;
-  title: string;
-  subtitle?: string;
-}) {
+export default function PageHero({ eyebrow, title, copy, image }: { eyebrow: string; title: string; copy?: string; image: string }) {
   return (
-    <section className="grid min-h-[650px] border-b-2 border-ocean-950 pt-[100px] lg:grid-cols-2">
-      <div className="tropical-grid flex flex-col justify-end bg-ocean-500 px-5 pb-14 pt-20 text-sand-50 sm:px-10 lg:px-14 lg:pb-20">
-        <Reveal>
-          <p className="inline-flex border-2 border-ocean-950 bg-[#dfff55] px-3 py-2 text-[9px] font-black uppercase tracking-[.18em] text-ocean-950 sticker-shadow-sm">
-            {eyebrow}
-          </p>
-          <h1 className="mt-7 max-w-3xl text-balance font-display text-[clamp(4.5rem,9vw,8rem)] leading-[.78] tracking-[.01em]">
-            {title}
-          </h1>
-          {subtitle && <p className="mt-7 max-w-xl border-l-4 border-[#dfff55] pl-5 text-sm font-medium leading-7 text-white/80 sm:text-base">{subtitle}</p>}
-        </Reveal>
-      </div>
-      <div className="relative min-h-[430px] border-t-2 border-ocean-950 lg:min-h-full lg:border-l-2 lg:border-t-0">
-        <Image src={image} alt={title} fill priority sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
-        <div className="absolute bottom-5 right-5 flex h-20 w-20 items-center justify-center border-2 border-ocean-950 bg-gold-500 sticker-shadow-sm">
-          <ArrowDownRight className="h-8 w-8" strokeWidth={2.5} />
-        </div>
+    <section className="paper-grain relative flex min-h-[66vh] items-end overflow-hidden bg-pine-black px-5 pb-16 pt-32 text-soft-white lg:px-10 lg:pb-24">
+      <Image src={image} alt="" fill priority className="hero-breathe object-cover" sizes="100vw" />
+      <div className="absolute inset-0 bg-gradient-to-t from-pine-black via-pine-black/30 to-pine-black/35" />
+      <div className="relative mx-auto w-full max-w-[94rem]">
+        <p className="eyebrow text-ember">{eyebrow}</p>
+        <h1 className="mt-6 max-w-5xl text-balance font-display text-[clamp(4rem,9vw,8.5rem)] leading-[.82]">{title}</h1>
+        {copy && <p className="mt-7 max-w-2xl text-sm leading-7 text-white/70 sm:text-base">{copy}</p>}
       </div>
     </section>
   );
