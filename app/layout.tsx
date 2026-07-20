@@ -53,7 +53,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${manrope.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${cormorant.variable} ${manrope.variable} h-full antialiased`}
+    >
       <body className="flex min-h-full flex-col">
         <Navbar />
         <main className="flex-1">{children}</main>
